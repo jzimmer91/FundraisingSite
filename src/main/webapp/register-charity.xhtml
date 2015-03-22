@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Register New Charity - RaiseFunds</title>
+    </h:head>
+    <h:body>
+               
+        <h:form id="register-charity">
+            Charity Name*: <h:inputText id="charityname" label="Charity Name" maxlength="15" required="true" requiredMessage="Required" 
+                         title="charityname" value="Charity Name"></h:inputText> <br/>
+            Unique Charity ID*: <h:inputText id="charityid" label="Charity ID" maxlength="15" required="true" requiredMessage="Required" 
+                         title="charityid" value="Charity ID"></h:inputText><br/>
+            Date of Establishment*: <h:inputText id="date" label="Date" maxlength="15" required="true" requiredMessage="Required" 
+                         title="date" value="Date Of Establishment"></h:inputText> <br/> 
+                         
+                         VALIDATE DATE
+                         
+            Address*: <h:inputTextarea id="address" label="Address" required="true" requiredMessage="Required"
+                                       title="Address" value="Address"></h:inputTextarea><br/>
+            Information: <br/>
+            <h:inputTextarea id="aboutyou" label="About-You" required="false" title="About-You" 
+                             value="Tell us about your charity (1000 characters max)"></h:inputTextarea>
+            
+            VALIDATE TEXT LENGTH
+            
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register"></h:commandButton>            
+        </h:form>
+    </h:body>
+</html>
+

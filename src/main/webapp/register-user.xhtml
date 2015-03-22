@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Register New User - RaiseFunds</title>
+    </h:head>
+    <h:body>        
+        <h:form id="register-user">
+            Username*: <h:inputText id="username" label="Username" maxlength="15" required="true" requiredMessage="Required" 
+                         title="username" value="Username"></h:inputText> <br/>
+            Password*: <h:inputText id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
+                         title="password" value="Password"></h:inputText><br/>
+            First Name*: <h:inputText id="firstname" label="First Name" maxlength="15" required="true" requiredMessage="Required" 
+                         title="firstame" value="Username"></h:inputText> <br/>
+            Last Name*: <h:inputText id="lastname" label="Last Name" maxlength="15" required="true" requiredMessage="Required" 
+                         title="lastname" value="Last Name"></h:inputText> <br/>
+            Email*: <h:inputText id="email" label="Email" maxlength="20" required="true" requiredMessage="Required" 
+                         title="email" value="Email"></h:inputText> <br/>
+            Address*: <h:inputTextarea id="address" label="Address" required="true" requiredMessage="Required"
+                                       title="Address" value="Address"></h:inputTextarea><br/>
+            About You <br/>
+            <h:inputTextarea id="aboutyou" label="About-You" required="false" title="About-You" 
+                             value="Tell us about you"></h:inputTextarea>
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register"></h:commandButton>            
+        </h:form> 
+    </h:body>
+</html>
+
