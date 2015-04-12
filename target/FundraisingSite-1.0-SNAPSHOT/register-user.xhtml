@@ -8,21 +8,21 @@
     <h:body>        
         <h:form id="register-user">
             Username*: <h:inputText id="username" label="Username" maxlength="15" required="true" requiredMessage="Required" 
-                         title="username" value="Username"></h:inputText> <br/>
-            Password*: <h:inputText id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
-                         title="password" value="Password"></h:inputText><br/>
+                         title="username" value="#{registerUserBean.username}"></h:inputText> <br/>
+            Password*: <h:inputSecret id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
+                         title="password" value="#{registerUserBean.password}"></h:inputSecret><br/>
             First Name*: <h:inputText id="firstname" label="First Name" maxlength="15" required="true" requiredMessage="Required" 
-                         title="firstame" value="Username"></h:inputText> <br/>
+                         title="firstame" value="#{registerUserBean.firstName}"></h:inputText> <br/>
             Last Name*: <h:inputText id="lastname" label="Last Name" maxlength="15" required="true" requiredMessage="Required" 
-                         title="lastname" value="Last Name"></h:inputText> <br/>
+                         title="lastname" value="#{registerUserBean.lastName}"></h:inputText> <br/>
             Email*: <h:inputText id="email" label="Email" maxlength="20" required="true" requiredMessage="Required" 
-                         title="email" value="Email"></h:inputText> <br/>
+                         title="email" value="#{registerUserBean.email}"></h:inputText> <br/>
             Address*: <h:inputTextarea id="address" label="Address" required="true" requiredMessage="Required"
-                                       title="Address" value="Address"></h:inputTextarea><br/>
+                                       title="Address" value="#{registerUserBean.address}"></h:inputTextarea><br/>
             About You <br/>
             <h:inputTextarea id="aboutyou" label="About-You" required="false" title="About-You" 
-                             value="Tell us about you"></h:inputTextarea>
-            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register"></h:commandButton>            
+                             value="#{registerUserBean.aboutYou}"></h:inputTextarea>
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register" action="#{registerUserBean.submitUser}"></h:commandButton>            
         </h:form> 
     </h:body>
 </html>

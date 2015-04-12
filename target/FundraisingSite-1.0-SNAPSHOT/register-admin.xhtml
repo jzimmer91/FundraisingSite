@@ -6,7 +6,14 @@
         <title>Register New Admin - RaiseFunds</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form id="register-admin">
+            Username*: <h:inputText id="username" label="Username" maxlength="15" required="true" requiredMessage="Required" 
+                         title="username" value="#{registerAdminBean.username}"></h:inputText> <br/>
+            Password*: <h:inputText id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
+                         title="password" value="#{registerAdminBean.password}"></h:inputText> <br/>
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register" action="#{registerAdminBean.submitAdmin}"></h:commandButton>            
+
+        </h:form>
     </h:body>
 </html>
 
