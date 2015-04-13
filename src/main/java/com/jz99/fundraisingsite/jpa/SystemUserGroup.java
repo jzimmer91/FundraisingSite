@@ -24,27 +24,32 @@ public class SystemUserGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull    @OneToOne   @JoinColumn(name="USERNAME")
-    private SystemUser USERNAME;
+    @NotNull
+    private String USERNAME;
     @NotNull
     private String GROUPNAME;
     
-    public Long getId() {
-        return id;
-    }
+    
+    
 
     public SystemUserGroup() {
     }
-    public SystemUserGroup(SystemUser username, String groupname){
+    public SystemUserGroup(String username, String groupname){
         this.USERNAME = username;
         this.GROUPNAME= groupname;
     }
 
-    public SystemUser getUSERNAME() {
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id){
+        this.id = id;
+    }
+    public String getUSERNAME() {
         return USERNAME;
     }
 
-    public void setUSERNAME(SystemUser USERNAME) {
+    public void setUSERNAME(String USERNAME) {
         this.USERNAME = USERNAME;
     }
 
@@ -54,10 +59,6 @@ public class SystemUserGroup implements Serializable {
 
     public void setGROUPNAME(String GROUPNAME) {
         this.GROUPNAME = GROUPNAME;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -80,9 +81,5 @@ public class SystemUserGroup implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.gp225.securityexercise2.entity.SystemUserGroup[ id=" + id + " ]";
-    }
     
 }

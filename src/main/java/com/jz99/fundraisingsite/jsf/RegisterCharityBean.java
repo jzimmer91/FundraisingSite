@@ -37,7 +37,7 @@ public class RegisterCharityBean {
    
    public String submitCharity(){
        service.registerCharity(username, password, charityName, charityId,date,address,information);
-       return "login";
+       return "index";
    }
 
     public RegisterServiceBean getService() {

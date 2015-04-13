@@ -9,6 +9,7 @@ import com.jz99.fundraisingsite.ejb.RegisterServiceBean;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Named;
 
 /**
@@ -35,7 +36,7 @@ public class RegisterUserBean{
     
     public String submitUser(){
         service.registerUser(username, password, firstName, lastName, email, address, aboutYou);
-        return "login";
+        return "index";
     }
 
     public String getUsername() {

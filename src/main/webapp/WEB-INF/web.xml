@@ -19,8 +19,52 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/login.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>UserAccess</display-name>
+        <web-resource-collection>
+            <web-resource-name>UserPages</web-resource-name>
+            <description/>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>CharityAccess</display-name>
+        <web-resource-collection>
+            <web-resource-name>CharityPages</web-resource-name>
+            <description/>
+            <url-pattern>/faces/charity/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>charity</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>AdminAccess</display-name>
+        <web-resource-collection>
+            <web-resource-name>AdminPages</web-resource-name>
+            <description/>
+            <url-pattern>/faces/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>WebappsRealm</realm-name>
