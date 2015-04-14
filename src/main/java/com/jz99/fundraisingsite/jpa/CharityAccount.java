@@ -6,12 +6,13 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -22,15 +23,19 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class CharityAccount extends Account implements Serializable{
    @NotNull
-   String charityName;
+   private String charityName;
    @NotNull
-   String charityId;   
+   private String charityId;   
    @NotNull @Temporal(javax.persistence.TemporalType.DATE)
-   Date establishmentDate;
+   private Date establishmentDate;
    @NotNull
-   String address;
+   private String address;
    @NotNull
-   String information;
+   private String information;
+   @OneToMany(mappedBy="charity")
+   private List<Cause> causes;
+   private int balance;
+   
    
    public CharityAccount(){
        
@@ -42,6 +47,8 @@ public class CharityAccount extends Account implements Serializable{
         this.establishmentDate = establishmentDate;
         this.address = address;
         this.information = information;
+        this.causes = new ArrayList<Cause>();
+        this.balance = 0;
     }
 
        
@@ -83,6 +90,22 @@ public class CharityAccount extends Account implements Serializable{
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    public List<Cause> getCauses() {
+        return causes;
+    }
+
+    public void setCauses(List<Cause> causes) {
+        this.causes = causes;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     @Override

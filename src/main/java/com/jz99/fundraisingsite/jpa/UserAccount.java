@@ -6,11 +6,13 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,15 +22,19 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class UserAccount extends Account implements Serializable {
     @NotNull
-    String firstName;
+    private String firstName;
     @NotNull
-    String lastName;
+    private String lastName;
     @NotNull
-    String email;
+    private String email;
     @NotNull
-    String address;
+    private String address;
     @NotNull
-    String aboutYou;
+    private String aboutYou;
+    @NotNull
+    private int balance;
+    @OneToMany(mappedBy="fundraiser")
+    private List<Activity> activities;
     
     public UserAccount(){
         
@@ -39,6 +45,8 @@ public class UserAccount extends Account implements Serializable {
         this.email = email;
         this.address = address;
         this.aboutYou = aboutYou;
+        this.balance = 10000;
+        this.activities = new ArrayList<Activity>();
     }    
 
     
@@ -82,15 +90,23 @@ public class UserAccount extends Account implements Serializable {
         this.aboutYou = aboutYou;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.getAccountId());
-        hash = 41 * hash + Objects.hashCode(this.firstName);
-        hash = 41 * hash + Objects.hashCode(this.lastName);
-        hash = 41 * hash + Objects.hashCode(this.email);
-        hash = 41 * hash + Objects.hashCode(this.address);
-        hash = 41 * hash + Objects.hashCode(this.aboutYou);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.firstName);
+        hash = 61 * hash + Objects.hashCode(this.lastName);
+        hash = 61 * hash + Objects.hashCode(this.email);
+        hash = 61 * hash + Objects.hashCode(this.address);
+        hash = 61 * hash + Objects.hashCode(this.aboutYou);
+        hash = 61 * hash + this.balance;
         return hash;
     }
 
@@ -103,9 +119,6 @@ public class UserAccount extends Account implements Serializable {
             return false;
         }
         final UserAccount other = (UserAccount) obj;
-        if (!Objects.equals(this.getAccountId(), other.getAccountId())) {
-            return false;
-        }
         if (!Objects.equals(this.firstName, other.firstName)) {
             return false;
         }
@@ -121,8 +134,13 @@ public class UserAccount extends Account implements Serializable {
         if (!Objects.equals(this.aboutYou, other.aboutYou)) {
             return false;
         }
+        if (this.balance != other.balance) {
+            return false;
+        }
         return true;
     }
+
+    
 
     
     

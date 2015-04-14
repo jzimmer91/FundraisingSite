@@ -31,7 +31,12 @@
         <auth-constraint>
             <description/>
             <role-name>user</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <security-constraint>
         <display-name>CharityAccess</display-name>
@@ -43,10 +48,11 @@
         <auth-constraint>
             <description/>
             <role-name>charity</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
-            <transport-guarantee>NONE</transport-guarantee>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
     <security-constraint>
@@ -62,7 +68,7 @@
         </auth-constraint>
         <user-data-constraint>
             <description/>
-            <transport-guarantee>NONE</transport-guarantee>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
     <login-config>

@@ -28,9 +28,10 @@
                                        title="Address" value="#{registerCharityBean.address}"></h:inputTextarea><br/>
             Information: <br/>
             <h:inputTextarea id="aboutyou" label="About-You" required="false" title="About-You" 
-                             value="#{registerCharityBean.information}"></h:inputTextarea>
+                             value="#{registerCharityBean.information}">
+                <f:validateLength maximum="1000"></f:validateLength> </h:inputTextarea>
             
-            VALIDATE TEXT LENGTH
+            
             
             <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register" action="#{registerCharityBean.submitCharity}"></h:commandButton>            
         </h:form>

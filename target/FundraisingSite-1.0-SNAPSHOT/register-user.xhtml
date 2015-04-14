@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Register New User - RaiseFunds</title>
     </h:head>
     <h:body>        
         <h:form id="register-user">
             Username*: <h:inputText id="username" label="Username" maxlength="15" required="true" requiredMessage="Required" 
-                         title="username" value="#{registerUserBean.username}"></h:inputText> <br/>
+                         title="username" value="#{registerUserBean.username}"></h:inputText> <br/>                        
             Password*: <h:inputSecret id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
                          title="password" value="#{registerUserBean.password}"></h:inputSecret><br/>
             First Name*: <h:inputText id="firstname" label="First Name" maxlength="15" required="true" requiredMessage="Required" 
@@ -16,12 +17,14 @@
             Last Name*: <h:inputText id="lastname" label="Last Name" maxlength="15" required="true" requiredMessage="Required" 
                          title="lastname" value="#{registerUserBean.lastName}"></h:inputText> <br/>
             Email*: <h:inputText id="email" label="Email" maxlength="20" required="true" requiredMessage="Required" 
-                         title="email" value="#{registerUserBean.email}"></h:inputText> <br/>
+                         title="email" value="#{registerUserBean.email}">
+                <f:validateRegex pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"></f:validateRegex></h:inputText> <br/>
             Address*: <h:inputTextarea id="address" label="Address" required="true" requiredMessage="Required"
                                        title="Address" value="#{registerUserBean.address}"></h:inputTextarea><br/>
             About You <br/>
             <h:inputTextarea id="aboutyou" label="About-You" required="false" title="About-You" 
-                             value="#{registerUserBean.aboutYou}"></h:inputTextarea>
+                             value="#{registerUserBean.aboutYou}">
+            <f:validateLength maximum="1000"></f:validateLength></h:inputTextarea>
             <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register" action="#{registerUserBean.submitUser}"></h:commandButton>            
         </h:form> 
     </h:body>

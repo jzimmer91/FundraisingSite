@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.jz99.fundraisingsite.jpa;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author Joe
+ */
+@Entity
+public class Cause implements Serializable {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @NotNull
+    private String name;
+    @NotNull
+    private String info;
+    @NotNull @ManyToOne
+    private CharityAccount charity;
+    @OneToMany(mappedBy="cause")
+    private List<Activity> activities;
+    
+    public Cause(){
+        
+    }
+
+    public Cause(String name, String info, CharityAccount charity) {
+        this.name = name;
+        this.info = info;
+        this.charity = charity;
+        this.activities = new ArrayList<Activity>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public CharityAccount getCharity() {
+        return charity;
+    }
+
+    public void setCharity(CharityAccount charity) {
+        this.charity = charity;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+}
