@@ -91,4 +91,11 @@ public class Cause implements Serializable {
     public void setActivities(List<Activity> activities) {
         this.activities = activities;
     }
+
+    @Override
+    public String toString() {
+        return "Cause{" + "name=" + name + '}';
+    }
+    
+    
 }

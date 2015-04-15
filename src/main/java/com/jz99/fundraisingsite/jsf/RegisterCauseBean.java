@@ -29,7 +29,7 @@ public class RegisterCauseBean {
     
     public String submitCause(){
         service.registerCause(name, info);
-        return "index";
+        return "success";
     }
 
     public CauseService getService() {

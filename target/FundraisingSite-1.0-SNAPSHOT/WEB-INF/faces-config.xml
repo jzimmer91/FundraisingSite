@@ -6,5 +6,21 @@
     version="2.0">
 
     <!-- Config here. Can even be kept empty. -->
+    <navigation-rule>
+        <from-view-id>/charity/register-cause.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{registerCauseBean.submitCause}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/charity/charity-home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user/register-activity.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{registerActivityBean.submitActivity}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/user/user-home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>   
 
 </faces-config>

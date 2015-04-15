@@ -38,8 +38,8 @@ public class RegisterActivityBean {
     }
     
     public String submitActivity(){
-        service.registerActivity(name,info);
-        return "index";
+        service.registerActivity(name,info,cause);
+        return "success";
     }
 
     public ActivityService getService() {
