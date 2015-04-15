@@ -35,10 +35,11 @@ public class Activity implements Serializable {
         
     }
 
-    public Activity(String name, String info, Cause cause) {
+    public Activity(String name, String info, Cause cause, UserAccount fundraiser) {
         this.name = name;
         this.info = info;
         this.cause = cause;
+        this.fundraiser = fundraiser;
     }
 
     public Long getId() {

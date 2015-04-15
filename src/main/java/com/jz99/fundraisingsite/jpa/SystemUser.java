@@ -7,11 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
+@NamedQuery(name="getAccount", query="SELECT DISTINCT a.account FROM SystemUser a WHERE a.USERNAME = LOWER(:username)")
 public class SystemUser implements Serializable {
     @Id
     @NotNull

@@ -3,10 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Charity Home - RaiseFunds</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        Charity Page
+        <h:form>
+            <h:link outcome="register-cause" value="Create a new cause" /><br />
+            
+            Logout: <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
+        </h:form>
     </h:body>
 </html>
 

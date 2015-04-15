@@ -5,7 +5,10 @@
  */
 package com.jz99.fundraisingsite.jsf;
 
-import com.jz99.fundraisingsite.ejb.TempService;
+import com.jz99.fundraisingsite.ejb.ActivityService;
+import com.jz99.fundraisingsite.jpa.Cause;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -16,28 +19,34 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class CreateActivityBean {
+public class RegisterActivityBean {
     
     @EJB
-    TempService service;
+    ActivityService service;
     
     String name;
     String info;
     String cause;
+    List<Cause> causes;
     
-    public CreateActivityBean(){
-        
+    public RegisterActivityBean(){        
     }
     
-    public void submitActivity(){
-        
+    @PostConstruct
+    private void init(){
+        this.causes = service.getCauses();
+    }
+    
+    public String submitActivity(){
+        service.registerActivity(name,info);
+        return "index";
     }
 
-    public TempService getService() {
+    public ActivityService getService() {
         return service;
     }
 
-    public void setService(TempService service) {
+    public void setService(ActivityService service) {
         this.service = service;
     }
 
@@ -63,6 +72,14 @@ public class CreateActivityBean {
 
     public void setCause(String cause) {
         this.cause = cause;
+    }
+    
+    public List<Cause> getCauses() {
+        return causes;
+    }
+
+    public void setCauses(List<Cause> causes) {
+        this.causes = causes;
     }
     
 }

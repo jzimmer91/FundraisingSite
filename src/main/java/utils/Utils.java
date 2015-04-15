@@ -12,15 +12,23 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
 
 /**
  *
  * @author Joe
  */
-public class PasswordEncrypt {
-    
-    public static String Encrypt(String password){
+public class Utils {
+
+    public static String getCurrentUser(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        String currentUser = request.getUserPrincipal().getName();
+        return currentUser;
+    }
+    public static String PasswordEncrypt(String password){
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             String passwd = password;
@@ -31,7 +39,7 @@ public class PasswordEncrypt {
             return output;
             
          } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(PasswordEncrypt.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

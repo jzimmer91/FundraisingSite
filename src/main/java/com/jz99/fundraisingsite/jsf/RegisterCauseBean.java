@@ -5,7 +5,7 @@
  */
 package com.jz99.fundraisingsite.jsf;
 
-import com.jz99.fundraisingsite.ejb.TempService;
+import com.jz99.fundraisingsite.ejb.CauseService;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -16,26 +16,27 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class CreateCauseBean {
+public class RegisterCauseBean {
     @EJB
-    TempService service;
+    CauseService service;
     
     String name;
     String info;
     
-    public CreateCauseBean(){
+    public RegisterCauseBean(){
         
     }
     
-    public void submitCause(){
-        
+    public String submitCause(){
+        service.registerCause(name, info);
+        return "index";
     }
 
-    public TempService getService() {
+    public CauseService getService() {
         return service;
     }
 
-    public void setService(TempService service) {
+    public void setService (CauseService service) {
         this.service = service;
     }
 

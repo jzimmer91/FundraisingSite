@@ -6,17 +6,11 @@
 package com.jz99.fundraisingsite.ejb;
 
 import com.jz99.fundraisingsite.jpa.*;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import utils.PasswordEncrypt;
+import utils.Utils;
 
 /**
  *
@@ -32,7 +26,7 @@ public class RegisterServiceBean {
   //check for duplicate emails before persisting
   public void registerUser(String email, String password, String firstName, String lastName, String address, String aboutYou) {
                
-            String pass = PasswordEncrypt.Encrypt(password);
+            String pass = Utils.PasswordEncrypt(password);
             
             UserAccount account = new UserAccount(firstName,lastName,address,aboutYou);
             SystemUser systemuser = new SystemUser(email, pass, account);
@@ -45,7 +39,7 @@ public class RegisterServiceBean {
   //check for duplicate emails before persisting
   public void registerCharity(String email, String password, String charityName, String charityId, Date date,String address, String information){
       
-      String pass = PasswordEncrypt.Encrypt(password);
+      String pass = Utils.PasswordEncrypt(password);
       
       CharityAccount account = new CharityAccount(charityName,charityId,date,address,information);
       SystemUser systemuser = new SystemUser(email,pass,account);
@@ -55,7 +49,7 @@ public class RegisterServiceBean {
       em.persist(group);
   }
   public void registerAdmin(String username, String password){      
-      String pass = PasswordEncrypt.Encrypt(password);
+      String pass = Utils.PasswordEncrypt(password);
       
       AdminAccount account = new AdminAccount(username);
       SystemUser systemuser = new SystemUser(username,pass, account);

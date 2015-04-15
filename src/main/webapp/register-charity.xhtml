@@ -9,9 +9,9 @@
     <h:body>
                
         <h:form id="register-charity">
-            Email*: <h:inputText id="email" label="email" maxlength="25" required="true" requiredMessage="Required" 
+            Email*: <h:inputText id="email" label="email" maxlength="45" required="true" requiredMessage="Required" 
                          title="email" value="#{registerCharityBean.email}">
-            <f:validateRegex pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"></f:validateRegex></h:inputText> <br/>
+            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex></h:inputText> <br/>
             Password*: <h:inputSecret id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
                          title="password" value="#{registerCharityBean.password}"></h:inputSecret> <br/>
             Charity Name*: <h:inputText id="charityname" label="Charity Name" maxlength="15" required="true" requiredMessage="Required" 

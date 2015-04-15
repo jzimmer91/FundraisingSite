@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +24,11 @@ import javax.validation.constraints.NotNull;
  * @author Joe
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name="listCauses", query="SELECT c FROM Cause c ORDER BY c.name"),
+@NamedQuery(name="selectCause", query="SELECT DISTINCT c FROM Cause c WHERE c.name = LOWER(:name)")
+})
+
 public class Cause implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -10,11 +10,15 @@
         Create new activity
         <h:form id="new-activity">
             Activity Name*: <h:inputText id="name" label="name" maxlength="25" required="true" requiredMessage="Required" 
-                         title="name" value="#{createActivityBean.name}"></h:inputText> <br/>
+                         title="name" value="#{registerActivityBean.name}"></h:inputText> <br/>
             Information*: <h:inputTextarea id="info" label="info" required="true" title="info" 
-                             value="#{createActivityBean.info}">
+                             value="#{registerActivityBean.info}">
             <f:validateLength maximum="1000"></f:validateLength></h:inputTextarea>
-            Cause  DROP DOWN BOX OF ALL CAUSES
+            <h:selectOneMenu value="#{registerActivityBean.cause}">
+                    <f:selectItems value="#{registerActivityBean.causes}" />
+            </h:selectOneMenu>
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register"
+                             action="#{registerActivityBean.submitActivity}"></h:commandButton>
             
         </h:form>
     </h:body>

@@ -14,7 +14,7 @@ import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import utils.PasswordEncrypt;
+import utils.Utils;
 
 /**
  *
@@ -35,7 +35,7 @@ public class StartUpBean {
   public void PostConstruct(){
       
         
-      String pass = PasswordEncrypt.Encrypt("admin1");
+      String pass = Utils.PasswordEncrypt("admin1");
       AdminAccount admin = new AdminAccount("admin1");
       SystemUser user = new SystemUser("admin1", pass, admin);
       SystemUserGroup group = new SystemUserGroup("admin1", "admin");

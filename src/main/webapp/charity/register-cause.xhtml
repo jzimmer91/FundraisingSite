@@ -9,10 +9,12 @@
     <h:body>
        <h:form id="new-activity">
             Cause Name*: <h:inputText id="name" label="name" maxlength="25" required="true" requiredMessage="Required" 
-                         title="name" value="#{createCauseBean.name}"></h:inputText> <br/>
+                         title="name" value="#{registerCauseBean.name}"></h:inputText> <br/>
             Information*: <h:inputTextarea id="info" label="info" required="true" title="info" 
-                             value="#{createCauseBean.info}">
+                             value="#{registerCauseBean.info}">
             <f:validateLength maximum="1000"></f:validateLength></h:inputTextarea>
+            <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register"
+                             action="#{registerCauseBean.submitCause}"></h:commandButton>
        </h:form>
         
     </h:body>
