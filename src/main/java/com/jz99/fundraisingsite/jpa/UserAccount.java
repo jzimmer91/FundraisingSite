@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -26,8 +25,6 @@ public class UserAccount extends Account implements Serializable {
     @NotNull
     private String lastName;
     @NotNull
-    private String email;
-    @NotNull
     private String address;
     @NotNull
     private String aboutYou;
@@ -39,10 +36,9 @@ public class UserAccount extends Account implements Serializable {
     public UserAccount(){
         
     }
-    public UserAccount(String firstName, String lastName, String email, String address, String aboutYou) {
+    public UserAccount(String firstName, String lastName, String address, String aboutYou) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
         this.address = address;
         this.aboutYou = aboutYou;
         this.balance = 10000;
@@ -64,14 +60,6 @@ public class UserAccount extends Account implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAddress() {
@@ -103,7 +91,6 @@ public class UserAccount extends Account implements Serializable {
         int hash = 3;
         hash = 61 * hash + Objects.hashCode(this.firstName);
         hash = 61 * hash + Objects.hashCode(this.lastName);
-        hash = 61 * hash + Objects.hashCode(this.email);
         hash = 61 * hash + Objects.hashCode(this.address);
         hash = 61 * hash + Objects.hashCode(this.aboutYou);
         hash = 61 * hash + this.balance;
@@ -125,9 +112,7 @@ public class UserAccount extends Account implements Serializable {
         if (!Objects.equals(this.lastName, other.lastName)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
+        
         if (!Objects.equals(this.address, other.address)) {
             return false;
         }

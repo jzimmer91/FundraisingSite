@@ -29,26 +29,27 @@ public class RegisterServiceBean {
   EntityManager em; 
   
   
-  //check for duplicate usernames before persisting
-  public void registerUser(String username, String password, String firstName, String lastName, String email, String address, String aboutYou) {
+  //check for duplicate emails before persisting
+  public void registerUser(String email, String password, String firstName, String lastName, String address, String aboutYou) {
                
             String pass = PasswordEncrypt.Encrypt(password);
-      
-            UserAccount account = new UserAccount(firstName,lastName,email,address,aboutYou);
-            SystemUser systemuser = new SystemUser(username, pass, account);
-            SystemUserGroup group = new SystemUserGroup(username,"user");
+            
+            UserAccount account = new UserAccount(firstName,lastName,address,aboutYou);
+            SystemUser systemuser = new SystemUser(email, pass, account);
+            SystemUserGroup group = new SystemUserGroup(email,"user");
             em.persist(account);
             em.persist(systemuser);
             em.persist(group);
         
     }
-  public void registerCharity(String username, String password, String charityName, String charityId, Date date,String address, String information){
+  //check for duplicate emails before persisting
+  public void registerCharity(String email, String password, String charityName, String charityId, Date date,String address, String information){
       
       String pass = PasswordEncrypt.Encrypt(password);
       
       CharityAccount account = new CharityAccount(charityName,charityId,date,address,information);
-      SystemUser systemuser = new SystemUser(username,pass,account);
-      SystemUserGroup group = new SystemUserGroup(username,"charity");
+      SystemUser systemuser = new SystemUser(email,pass,account);
+      SystemUserGroup group = new SystemUserGroup(email,"charity");
       em.persist(account);
       em.persist(systemuser);
       em.persist(group);
@@ -62,7 +63,7 @@ public class RegisterServiceBean {
       em.persist(account);
       em.persist(systemuser);
       em.persist(group);
-      em.flush();
+      
       
   }
 }

@@ -6,6 +6,7 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +23,6 @@ import javax.validation.constraints.NotNull;
 public class SystemUserGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @NotNull
     private String USERNAME;
     @NotNull
@@ -39,12 +38,6 @@ public class SystemUserGroup implements Serializable {
         this.GROUPNAME= groupname;
     }
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
     public String getUSERNAME() {
         return USERNAME;
     }
@@ -63,23 +56,31 @@ public class SystemUserGroup implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.USERNAME);
+        hash = 89 * hash + Objects.hashCode(this.GROUPNAME);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SystemUserGroup)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        SystemUserGroup other = (SystemUserGroup) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SystemUserGroup other = (SystemUserGroup) obj;
+        if (!Objects.equals(this.USERNAME, other.USERNAME)) {
+            return false;
+        }
+        if (!Objects.equals(this.GROUPNAME, other.GROUPNAME)) {
             return false;
         }
         return true;
     }
+
+    
 
     
 }

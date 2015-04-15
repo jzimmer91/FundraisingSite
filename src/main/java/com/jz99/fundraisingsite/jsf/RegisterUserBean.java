@@ -22,11 +22,10 @@ public class RegisterUserBean{
     @EJB
     RegisterServiceBean service; 
     
-    String username;
+    String email;
     String password;
     String firstName;
-    String lastName;
-    String email;
+    String lastName;    
     String address;
     String aboutYou;
     
@@ -35,16 +34,8 @@ public class RegisterUserBean{
     }
     
     public String submitUser(){
-        service.registerUser(username, password, firstName, lastName, email, address, aboutYou);
+        service.registerUser(email, password, firstName, lastName, address, aboutYou);
         return "index";
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -108,7 +99,7 @@ public class RegisterUserBean{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.username);
+        
         hash = 37 * hash + Objects.hashCode(this.password);
         hash = 37 * hash + Objects.hashCode(this.firstName);
         hash = 37 * hash + Objects.hashCode(this.lastName);
@@ -127,9 +118,7 @@ public class RegisterUserBean{
             return false;
         }
         final RegisterUserBean other = (RegisterUserBean) obj;
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
+        
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }

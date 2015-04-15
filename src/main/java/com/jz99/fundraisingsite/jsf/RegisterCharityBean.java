@@ -23,7 +23,7 @@ public class RegisterCharityBean {
    @EJB
    RegisterServiceBean service;
     
-   String username;
+   String email;
    String password;
    String charityName;
    String charityId;
@@ -36,7 +36,7 @@ public class RegisterCharityBean {
    }
    
    public String submitCharity(){
-       service.registerCharity(username, password, charityName, charityId,date,address,information);
+       service.registerCharity(email, password, charityName, charityId,date,address,information);
        return "index";
    }
 
@@ -48,12 +48,12 @@ public class RegisterCharityBean {
         this.service = service;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -108,7 +108,7 @@ public class RegisterCharityBean {
     public int hashCode() {
         int hash = 3;
         hash = 13 * hash + Objects.hashCode(this.service);
-        hash = 13 * hash + Objects.hashCode(this.username);
+        hash = 13 * hash + Objects.hashCode(this.email);
         hash = 13 * hash + Objects.hashCode(this.password);
         hash = 13 * hash + Objects.hashCode(this.charityName);
         hash = 13 * hash + Objects.hashCode(this.charityId);
@@ -130,7 +130,7 @@ public class RegisterCharityBean {
         if (!Objects.equals(this.service, other.service)) {
             return false;
         }
-        if (!Objects.equals(this.username, other.username)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
