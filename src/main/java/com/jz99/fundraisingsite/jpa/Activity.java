@@ -46,17 +46,17 @@ public class Activity implements Serializable {
         this.cause = cause;
         this.fundraiser = fundraiser;
         this.donations = new ArrayList<>();
-        addSelf();
+        //addSelf();
     }
-    private void addSelf(){
-        fundraiser.addActivity(this);
-        cause.addActivity(this);
-    }
-    public void addDonation(Donation donation){
-        if(!donations.contains(donation)){
-            donations.add(donation);
-        }
-    }
+//    private void addSelf(){
+//        fundraiser.addActivity(this);
+//        cause.addActivity(this);
+//    }
+//    public void addDonation(Donation donation){
+//        if(!donations.contains(donation)){
+//            donations.add(donation);
+//        }
+//    }
 
     public Long getId() {
         return id;

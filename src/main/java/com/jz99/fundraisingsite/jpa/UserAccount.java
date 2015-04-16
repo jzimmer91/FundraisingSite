@@ -38,7 +38,8 @@ public class UserAccount extends Account implements Serializable {
     public UserAccount(){
         
     }
-    public UserAccount(String firstName, String lastName, String address, String aboutYou) {
+    public UserAccount(String account, String firstName, String lastName, String address, String aboutYou) {
+        setUsername(account);
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -47,11 +48,11 @@ public class UserAccount extends Account implements Serializable {
         this.activities = new ArrayList<>();
     }    
 
-    public void addActivity(Activity activity){
-        if(!activities.contains(activity)){
-            activities.add(activity);
-        }
-    }
+//    public void addActivity(Activity activity){
+//        if(!activities.contains(activity)){
+//            activities.add(activity);
+//        }
+//    }
     public String getFirstName() {
         return firstName;
     }

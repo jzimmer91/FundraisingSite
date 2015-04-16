@@ -21,12 +21,12 @@ import utils.Utils;
 
 @Startup
 @Singleton
-public class StartUpBeanFIX {
+public class StartUpBean {
   
   @PersistenceContext
   EntityManager em;
   
-  public StartUpBeanFIX(){
+  public StartUpBean(){
       
   }
   

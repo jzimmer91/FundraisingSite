@@ -28,7 +28,7 @@ public class RegisterService {
                
             String pass = Utils.PasswordEncrypt(password);
             
-            UserAccount account = new UserAccount(firstName,lastName,address,aboutYou);
+            UserAccount account = new UserAccount(email,firstName,lastName,address,aboutYou);
             SystemUser systemuser = new SystemUser(email, pass, account);
             SystemUserGroup group = new SystemUserGroup(email,"user");
             em.persist(account);
@@ -41,7 +41,7 @@ public class RegisterService {
       
       String pass = Utils.PasswordEncrypt(password);
       
-      CharityAccount account = new CharityAccount(charityName,charityId,date,address,information);
+      CharityAccount account = new CharityAccount(email,charityName,charityId,date,address,information);
       SystemUser systemuser = new SystemUser(email,pass,account);
       SystemUserGroup group = new SystemUserGroup(email,"charity");
       em.persist(account);

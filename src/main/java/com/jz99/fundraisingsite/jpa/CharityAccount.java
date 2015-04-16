@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,7 +42,8 @@ public class CharityAccount extends Account implements Serializable{
        
    }
    
-   public CharityAccount(String charityName, String charityId, Date establishmentDate, String address, String information) {
+   public CharityAccount(String account, String charityName, String charityId, Date establishmentDate, String address, String information) {
+        setUsername(account) ;
         this.charityName = charityName;
         this.charityId = charityId;
         this.establishmentDate = establishmentDate;
@@ -53,11 +53,11 @@ public class CharityAccount extends Account implements Serializable{
         this.balance = 0;
     }
    
-   public void addCause(Cause cause){
-       if (!causes.contains(cause)){
-           causes.add(cause);
-       }
-   }
+//   public void addCause(Cause cause){
+//       if (!causes.contains(cause)){
+//           causes.add(cause);
+//       }
+//   }
        
     public String getCharityName() {
         return charityName;

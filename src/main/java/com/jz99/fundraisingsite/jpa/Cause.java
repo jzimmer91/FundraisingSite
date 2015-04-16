@@ -36,7 +36,7 @@ public class Cause implements Serializable {
     private String name;
     @NotNull
     private String info;
-    @NotNull @ManyToOne
+    @ManyToOne
     private CharityAccount charity;
     @OneToMany(mappedBy="cause")
     private List<Activity> activities;
@@ -53,22 +53,22 @@ public class Cause implements Serializable {
         this.charity = charity;
         this.activities = new ArrayList<>();
         this.donations = new ArrayList<>();
-        addSelf();
+        //addSelf();
     }
     
-    private void addSelf(){
-        charity.addCause(this);
-    }
-    public void addActivity(Activity activity){
-        if(!activities.contains(activity)){
-            activities.add(activity);
-        }
-    }
-    public void addDonation(Donation donation){
-        if(!donations.contains(donation)){
-            donations.add(donation);
-        }
-    }
+//    private void addSelf(){
+//        charity.addCause(this);
+//    }
+//    public void addActivity(Activity activity){
+//        if(!activities.contains(activity)){
+//            activities.add(activity);
+//        }
+//    }
+//    public void addDonation(Donation donation){
+//        if(!donations.contains(donation)){
+//            donations.add(donation);
+//        }
+//    }
 
     public Long getId() {
         return id;
@@ -121,7 +121,7 @@ public class Cause implements Serializable {
 
     @Override
     public String toString() {
-        return "Cause{" + "name=" + name + '}';
+        return name;
     }
     
     

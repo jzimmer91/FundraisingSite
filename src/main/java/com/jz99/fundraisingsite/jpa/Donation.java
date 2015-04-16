@@ -41,22 +41,22 @@ public class Donation implements Serializable {
         this.activity = activity;
         this.amount = amount;
         this.donor = donor;
-        addSelfCause();
-        addSelfActivity();
+        //addSelfCause();
+        //addSelfActivity();
     }
     
     public Donation(Cause cause, int amount, UserAccount user){
         this.cause = cause;
         this.amount = amount;
-        addSelfCause();
+        //addSelfCause();
     }
     
-    private void addSelfCause(){
-        cause.addDonation(this);
-    }
-    private void addSelfActivity(){
-        activity.addDonation(this);
-    }
+//    private void addSelfCause(){
+//        cause.addDonation(this);
+//    }
+//    private void addSelfActivity(){
+//        activity.addDonation(this);
+//    }
 
     public Long getId() {
         return id;

@@ -10,21 +10,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Joe
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Account implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long accountId;
+    @NotNull
+    private String username;
 
     public Long getAccountId() {
         return accountId;
     }
-    
+    public String getUsername(){
+        return username;
+    }
+    public void setUsername(String username){
+        this.username = username;
+    }
 }

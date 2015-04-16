@@ -17,9 +17,9 @@ com\jz99\fundraisingsite\ejb\ListService.class
 com\jz99\fundraisingsite\jpa\Account.class
 com\jz99\fundraisingsite\ejb\RegisterService.class
 com\jz99\fundraisingsite\jpa\UserAccount.class
-com\jz99\fundraisingsite\ejb\StartUpBeanFIX.class
 com\jz99\fundraisingsite\jsf\RegisterActivityBean.class
 com\jz99\fundraisingsite\ejb\DonationService.class
 com\jz99\fundraisingsite\jsf\RegisterAdminBean.class
+com\jz99\fundraisingsite\ejb\StartUpBean.class
 com\jz99\fundraisingsite\jpa\Donation.class
 com\jz99\fundraisingsite\jpa\Cause.class

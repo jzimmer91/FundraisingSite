@@ -3,8 +3,6 @@ package com.jz99.fundraisingsite.jpa;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
@@ -13,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@NamedQuery(name="getAccount", query="SELECT DISTINCT a.account FROM SystemUser a WHERE a.USERNAME = LOWER(:username)")
+@NamedQuery(name="getAccount", query="SELECT a.account FROM SystemUser a WHERE a.USERNAME = (:username)")
 public class SystemUser implements Serializable {
     @Id
     @NotNull
