@@ -19,7 +19,7 @@ import utils.Utils;
  * @author Joe
  */
 
-//@Startup
+@Startup
 @Singleton
 public class StartUpBeanFIX {
   

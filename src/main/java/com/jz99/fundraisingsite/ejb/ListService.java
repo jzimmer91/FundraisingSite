@@ -26,7 +26,7 @@ public class ListService {
     }
     
     public List<UserAccount> getUsers(){
-        List<UserAccount> users = em.createNamedQuery("listCharities").getResultList();
+        List<UserAccount> users = em.createNamedQuery("listUsers").getResultList();
         return users;
     }
 }
