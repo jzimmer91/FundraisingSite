@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
  * @author Joe
  */
 @Entity
+@NamedQuery(name="listUsers", query="SELECT u FROM UserAccount u ORDER BY u.lastName")
 public class UserAccount extends Account implements Serializable {
     @NotNull
     private String firstName;
@@ -42,10 +44,14 @@ public class UserAccount extends Account implements Serializable {
         this.address = address;
         this.aboutYou = aboutYou;
         this.balance = 10000;
-        this.activities = new ArrayList<Activity>();
+        this.activities = new ArrayList<>();
     }    
 
-    
+    public void addActivity(Activity activity){
+        if(!activities.contains(activity)){
+            activities.add(activity);
+        }
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -85,6 +91,16 @@ public class UserAccount extends Account implements Serializable {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+    
+    
 
     @Override
     public int hashCode() {

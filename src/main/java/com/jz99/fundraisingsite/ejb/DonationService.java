@@ -5,8 +5,8 @@
  */
 package com.jz99.fundraisingsite.ejb;
 
-import com.jz99.fundraisingsite.jpa.Cause;
-import com.jz99.fundraisingsite.jpa.CharityAccount;
+import com.jz99.fundraisingsite.jpa.Donation;
+import com.jz99.fundraisingsite.jpa.UserAccount;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,22 +19,26 @@ import utils.Utils;
  * @author Joe
  */
 @Stateless
-public class CauseService {
+public class DonationService {
     @PersistenceContext
     EntityManager em;
     
-    public void registerCause(String name, String info){
-        //change null to current charity
-        Cause cause = new Cause(name, info, getCurrentUser());
-        em.persist(cause);
+    public void registerCauseDonation(String cause, int amount){
+        Donation donation = new Donation(null, amount, getCurrentUser());
+        em.persist(donation);
         em.flush();
-        
     }
-    public CharityAccount getCurrentUser(){
+    
+    public void registerActivityDonation(String cause, String activity, int amount){
+        Donation donation = new Donation(null,null, amount,getCurrentUser());
+        em.persist(donation);
+        em.flush();
+    }
+    public UserAccount getCurrentUser(){
         String currentUser = Utils.getCurrentUser();
         Query query = em.createNamedQuery("getAccount");
         query.setParameter("username", currentUser);
-        List<CharityAccount> users = query.getResultList();
+        List<UserAccount> users = query.getResultList();
         return users.get(0);
     }
 }

@@ -5,7 +5,7 @@
  */
 package com.jz99.fundraisingsite.jsf;
 
-import com.jz99.fundraisingsite.ejb.RegisterServiceBean;
+import com.jz99.fundraisingsite.ejb.RegisterService;
 import java.util.Date;
 import java.util.Objects;
 import javax.ejb.EJB;
@@ -21,7 +21,7 @@ import javax.inject.Named;
 public class RegisterCharityBean {
     
    @EJB
-   RegisterServiceBean service;
+   RegisterService service;
     
    String email;
    String password;
@@ -40,11 +40,11 @@ public class RegisterCharityBean {
        return "index";
    }
 
-    public RegisterServiceBean getService() {
+    public RegisterService getService() {
         return service;
     }
 
-    public void setService(RegisterServiceBean service) {
+    public void setService(RegisterService service) {
         this.service = service;
     }
 

@@ -6,12 +6,15 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -30,6 +33,8 @@ public class Activity implements Serializable {
     private Cause cause;
     @ManyToOne
     private UserAccount fundraiser;
+    @OneToMany(mappedBy="activity")
+    private List<Donation> donations;
     
     public Activity(){
         
@@ -40,6 +45,17 @@ public class Activity implements Serializable {
         this.info = info;
         this.cause = cause;
         this.fundraiser = fundraiser;
+        this.donations = new ArrayList<>();
+        addSelf();
+    }
+    private void addSelf(){
+        fundraiser.addActivity(this);
+        cause.addActivity(this);
+    }
+    public void addDonation(Donation donation){
+        if(!donations.contains(donation)){
+            donations.add(donation);
+        }
     }
 
     public Long getId() {

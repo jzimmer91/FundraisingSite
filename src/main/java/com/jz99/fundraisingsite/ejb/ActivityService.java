@@ -8,11 +8,9 @@ package com.jz99.fundraisingsite.ejb;
 import com.jz99.fundraisingsite.jpa.*;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
 import utils.Utils;
 
 /**
@@ -29,6 +27,7 @@ public class ActivityService {
         //change first null to cause and second to current user
         Activity activity = new Activity(name, info, getCauseSelected(cause), getCurrentUser());
         em.persist(activity);
+        em.flush();
     }
     
     public Cause getCauseSelected(String cause){

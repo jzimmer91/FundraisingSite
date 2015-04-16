@@ -5,7 +5,7 @@
  */
 package com.jz99.fundraisingsite.jsf;
 
-import com.jz99.fundraisingsite.ejb.RegisterServiceBean;
+import com.jz99.fundraisingsite.ejb.RegisterService;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +20,7 @@ import javax.inject.Named;
 public class RegisterAdminBean {
     
     @EJB
-   RegisterServiceBean service;
+   RegisterService service;
     String username;
     String password;
     
@@ -33,11 +33,11 @@ public class RegisterAdminBean {
        return "index";
     }
     
-    public RegisterServiceBean getService() {
+    public RegisterService getService() {
         return service;
     }
 
-    public void setService(RegisterServiceBean service) {
+    public void setService(RegisterService service) {
         this.service = service;
     }
 

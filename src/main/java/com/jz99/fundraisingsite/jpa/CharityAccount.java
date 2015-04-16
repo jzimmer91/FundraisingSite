@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
  * @author Joe
  */
 @Entity
+@NamedQuery(name="listCharities", query="SELECT c FROM CharityAccount c ORDER BY c.charityName")
 public class CharityAccount extends Account implements Serializable{
    @NotNull
    private String charityName;
@@ -47,10 +49,15 @@ public class CharityAccount extends Account implements Serializable{
         this.establishmentDate = establishmentDate;
         this.address = address;
         this.information = information;
-        this.causes = new ArrayList<Cause>();
+        this.causes = new ArrayList<>();
         this.balance = 0;
     }
-
+   
+   public void addCause(Cause cause){
+       if (!causes.contains(cause)){
+           causes.add(cause);
+       }
+   }
        
     public String getCharityName() {
         return charityName;

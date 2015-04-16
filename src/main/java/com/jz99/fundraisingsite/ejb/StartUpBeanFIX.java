@@ -8,10 +8,8 @@ package com.jz99.fundraisingsite.ejb;
 
 import com.jz99.fundraisingsite.jpa.*;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import utils.Utils;
@@ -21,19 +19,19 @@ import utils.Utils;
  * @author Joe
  */
 
-@Startup
+//@Startup
 @Singleton
-public class StartUpBean {
+public class StartUpBeanFIX {
   
   @PersistenceContext
   EntityManager em;
   
-  public StartUpBean(){
+  public StartUpBeanFIX(){
       
   }
+  
   @PostConstruct
-  public void PostConstruct(){
-      
+  public void PostConstruct(){     
         
       String pass = Utils.PasswordEncrypt("admin1");
       AdminAccount admin = new AdminAccount("admin1");
