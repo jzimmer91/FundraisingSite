@@ -12,7 +12,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import utils.Utils;
+import com.jz99.fundraisingsite.utils.Utils;
 
 /**
  *

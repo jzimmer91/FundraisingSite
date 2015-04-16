@@ -26,7 +26,7 @@ public class AdminAccount extends Account implements Serializable {
     
     public AdminAccount(String USERNAME){
         this.USERNAME = USERNAME;
-        setUsername(USERNAME);
+        
     }
 
     public String getUSERNAME() {

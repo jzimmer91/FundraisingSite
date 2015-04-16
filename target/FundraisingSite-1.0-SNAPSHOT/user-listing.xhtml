@@ -7,10 +7,12 @@
         <title>User Listings - RaiseFunds</title>
     </h:head>
     <h:body>
-        <h:dataTable value="#{listBean.users}" var="user">
+        <h:dataTable value="#{dataBean.users}" var="user">
             <h:column>
-                <f:facet name="header">ID</f:facet>
-                test #{user.accountId}
+                <f:facet name="header">Link</f:facet>
+                <h:form>
+                    <h:commandLink action="#{displayBean.findUser(user.accountId)}" value="Link"></h:commandLink>
+                </h:form>                
             </h:column>
             <h:column>
                 <f:facet name="header">First Name</f:facet>

@@ -10,18 +10,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.List;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Joe
  */
 @Entity
-@NamedQuery(name="listCharities", query="SELECT c FROM CharityAccount c ORDER BY c.charityName")
+@NamedQueries({
+    @NamedQuery(name="listCharities", query="SELECT c FROM CharityAccount c ORDER BY c.charityName"),
+    @NamedQuery(name="getCharity", query="SELECT u FROM CharityAccount u WHERE u.accountId = (:id)")
+    //@NamedQuery(name="getBalance", query ="SELECT c.bank.donations.amount FROM CharityAccount c")
+})
+
+
 public class CharityAccount extends Account implements Serializable{
    @NotNull
    private String charityName;
@@ -34,30 +45,25 @@ public class CharityAccount extends Account implements Serializable{
    @NotNull
    private String information;
    @OneToMany(mappedBy="charity")
-   private List<Cause> causes;
-   private int balance;
-   
+   private List<Cause> causes;   
+   @Embedded
+   private VirtualAccount bank;
    
    public CharityAccount(){
        
    }
    
-   public CharityAccount(String account, String charityName, String charityId, Date establishmentDate, String address, String information) {
-        setUsername(account) ;
+   public CharityAccount(String charityName, String charityId, Date establishmentDate, String address, String information, VirtualAccount bank) {
+        
         this.charityName = charityName;
         this.charityId = charityId;
         this.establishmentDate = establishmentDate;
         this.address = address;
         this.information = information;
         this.causes = new ArrayList<>();
-        this.balance = 0;
+        this.bank = bank;        
     }
-   
-//   public void addCause(Cause cause){
-//       if (!causes.contains(cause)){
-//           causes.add(cause);
-//       }
-//   }
+  
        
     public String getCharityName() {
         return charityName;
@@ -99,6 +105,7 @@ public class CharityAccount extends Account implements Serializable{
         this.information = information;
     }
 
+    
     public List<Cause> getCauses() {
         return causes;
     }
@@ -107,15 +114,15 @@ public class CharityAccount extends Account implements Serializable{
         this.causes = causes;
     }
 
-    public int getBalance() {
-        return balance;
+    public VirtualAccount getBank() {
+        return bank;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setBank(VirtualAccount bank) {
+        this.bank = bank;
     }
 
-    @Override
+        @Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.getAccountId());
@@ -156,8 +163,8 @@ public class CharityAccount extends Account implements Serializable{
         }
         return true;
     }
-    
-    
+
+     
    
    
     

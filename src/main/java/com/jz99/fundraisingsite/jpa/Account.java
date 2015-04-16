@@ -6,11 +6,22 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -20,16 +31,14 @@ import javax.validation.constraints.NotNull;
 public abstract class Account implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long accountId;
-    @NotNull
-    private String username;
+    
 
     public Long getAccountId() {
         return accountId;
     }
-    public String getUsername(){
-        return username;
+
+    public Account() {
     }
-    public void setUsername(String username){
-        this.username = username;
-    }
+
+    
 }

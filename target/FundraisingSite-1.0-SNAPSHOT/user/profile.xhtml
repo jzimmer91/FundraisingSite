@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Name : #{displayBean.singleUser.firstName} #{displayBean.singleUser.lastName} <br/>
+        #{displayBean.singleUser.aboutYou}<br/>        
+       
+        <h:dataTable value="#{displayBean.singleUser.activities}" var="activity">
+            <h:column>
+                <f:facet name="header">Link</f:facet>
+                <h:form>
+                    <h:commandLink action="#{displayBean.findActivity(activity.id)}" value="Link"></h:commandLink>
+                </h:form>                
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                     #{activity.name}         
+            </h:column>
+            <h:column>
+                <f:facet name="header">Info</f:facet>
+                    #{activity.info}          
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cause</f:facet>
+                    #{activity.cause}          
+            </h:column>
+        </h:dataTable>
+        <br/>
+        <h:form>
+            <h:commandButton action="#{displayBean.goHome()}"></h:commandButton>
+        </h:form>
+         
+        
+    </h:body>
+</html>
+

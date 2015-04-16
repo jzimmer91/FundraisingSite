@@ -23,7 +23,7 @@ public class RegisterDonationBean {
     DonationService service;
     String cause;
     String activity;
-    int amount;
+    String amount;
     
     public RegisterDonationBean(){
         
@@ -61,11 +61,11 @@ public class RegisterDonationBean {
         this.activity = activity;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -74,7 +74,7 @@ public class RegisterDonationBean {
         int hash = 3;
         hash = 89 * hash + Objects.hashCode(this.cause);
         hash = 89 * hash + Objects.hashCode(this.activity);
-        hash = 89 * hash + this.amount;
+        hash = 89 * hash + Objects.hashCode(this.amount);
         return hash;
     }
 
@@ -93,11 +93,13 @@ public class RegisterDonationBean {
         if (!Objects.equals(this.activity, other.activity)) {
             return false;
         }
-        if (this.amount != other.amount) {
+        if (!Objects.equals(this.amount, other.amount)) {
             return false;
         }
         return true;
     }
+
+    
     
     
 }

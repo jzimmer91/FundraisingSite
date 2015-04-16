@@ -10,17 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Joe
  */
 @Entity
-@NamedQuery(name="listUsers", query="SELECT u FROM UserAccount u ORDER BY u.lastName")
+@NamedQueries({
+    @NamedQuery(name="listUsers", query="SELECT u FROM UserAccount u ORDER BY u.lastName"),    
+    @NamedQuery(name="getUser", query="SELECT u FROM UserAccount u WHERE u.accountId = (:id)")
+})
+
+@XmlRootElement
 public class UserAccount extends Account implements Serializable {
     @NotNull
     private String firstName;
@@ -38,8 +46,7 @@ public class UserAccount extends Account implements Serializable {
     public UserAccount(){
         
     }
-    public UserAccount(String account, String firstName, String lastName, String address, String aboutYou) {
-        setUsername(account);
+    public UserAccount(String firstName, String lastName, String address, String aboutYou) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -48,11 +55,7 @@ public class UserAccount extends Account implements Serializable {
         this.activities = new ArrayList<>();
     }    
 
-//    public void addActivity(Activity activity){
-//        if(!activities.contains(activity)){
-//            activities.add(activity);
-//        }
-//    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -93,6 +96,7 @@ public class UserAccount extends Account implements Serializable {
         this.balance = balance;
     }
 
+    @XmlTransient
     public List<Activity> getActivities() {
         return activities;
     }
@@ -142,8 +146,6 @@ public class UserAccount extends Account implements Serializable {
         return true;
     }
 
-    
-
-    
+   
     
 }

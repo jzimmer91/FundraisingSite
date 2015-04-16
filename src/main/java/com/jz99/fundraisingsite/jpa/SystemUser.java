@@ -5,13 +5,19 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
-@NamedQuery(name="getAccount", query="SELECT a.account FROM SystemUser a WHERE a.USERNAME = (:username)")
+@NamedQueries({
+    @NamedQuery(name="getAccount", query="SELECT a.account FROM SystemUser a WHERE a.USERNAME = (:username)"),
+    @NamedQuery(name="checkDuplicate",query="SELECT a FROM SystemUser a WHERE a.USERNAME = (:username)"),
+           
+})
+
 public class SystemUser implements Serializable {
     @Id
     @NotNull

@@ -8,7 +8,6 @@ package com.jz99.fundraisingsite.jpa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,11 +26,15 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="listCauses", query="SELECT c FROM Cause c ORDER BY c.name"),
-@NamedQuery(name="selectCause", query="SELECT DISTINCT c FROM Cause c WHERE c.name = LOWER(:name)")
+        @NamedQuery(name="listCauses", query="SELECT c FROM Cause c ORDER BY c.name"),
+        @NamedQuery(name="getCauseByName", query="SELECT DISTINCT c FROM Cause c WHERE c.name = LOWER(:name)"),
+        @NamedQuery(name="getCause", query="SELECT c FROM Cause c WHERE c.id = (:id)"),
+        @NamedQuery(name="findBank", query="SELECT c.charity.bank FROM Cause c WHERE c.name = LOWER(:name)")
 })
 
+@XmlRootElement
 public class Cause implements Serializable {
+    
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
@@ -52,24 +57,9 @@ public class Cause implements Serializable {
         this.info = info;
         this.charity = charity;
         this.activities = new ArrayList<>();
-        this.donations = new ArrayList<>();
-        //addSelf();
+        
     }
     
-//    private void addSelf(){
-//        charity.addCause(this);
-//    }
-//    public void addActivity(Activity activity){
-//        if(!activities.contains(activity)){
-//            activities.add(activity);
-//        }
-//    }
-//    public void addDonation(Donation donation){
-//        if(!donations.contains(donation)){
-//            donations.add(donation);
-//        }
-//    }
-
     public Long getId() {
         return id;
     }
@@ -102,6 +92,7 @@ public class Cause implements Serializable {
         this.charity = charity;
     }
 
+    @XmlTransient
     public List<Activity> getActivities() {
         return activities;
     }
@@ -110,6 +101,7 @@ public class Cause implements Serializable {
         this.activities = activities;
     }
 
+    @XmlTransient
     public List<Donation> getDonations() {
         return donations;
     }
@@ -123,6 +115,6 @@ public class Cause implements Serializable {
     public String toString() {
         return name;
     }
-    
+
     
 }

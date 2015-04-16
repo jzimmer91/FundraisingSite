@@ -5,7 +5,7 @@
  */
 package com.jz99.fundraisingsite.jsf;
 
-import com.jz99.fundraisingsite.ejb.ListService;
+import com.jz99.fundraisingsite.ejb.DataService;
 import com.jz99.fundraisingsite.jpa.*;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,20 +19,21 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class ListBean {
+public class DataBean {
     
     List<UserAccount> users;
     List<CharityAccount> charities;
     
+    
     @EJB
-    ListService service;
+    DataService service;
     
     @PostConstruct
     private void init(){
         this.users = service.getUsers();
         this.charities = service.getCharities();
-    }
-
+    }   
+    
     public List<UserAccount> getUsers() {
         return users;
     }
@@ -49,11 +50,11 @@ public class ListBean {
         this.charities = charities;
     }
 
-    public ListService getService() {
+    public DataService getService() {
         return service;
     }
 
-    public void setService(ListService service) {
+    public void setService(DataService service) {
         this.service = service;
     }
     

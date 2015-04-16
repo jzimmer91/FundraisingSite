@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import utils.Utils;
+import com.jz99.fundraisingsite.utils.Utils;
 
 /**
  *
@@ -25,13 +25,13 @@ public class ActivityService {
     public void registerActivity(String name, String info, String cause){
            
         //change first null to cause and second to current user
-        Activity activity = new Activity(name, info, getCauseSelected(cause), getCurrentUser());
+        Activity activity = new Activity(name, info, getCauseByName(cause), getCurrentUser());
         em.persist(activity);
         em.flush();
     }
     
-    public Cause getCauseSelected(String cause){
-        Query query = em.createNamedQuery("selectCause");
+    public Cause getCauseByName(String cause){
+        Query query = em.createNamedQuery("getCauseByName");
         query.setParameter("name", cause);
         List<Cause> selectedcause = query.getResultList();
         return selectedcause.get(0);
