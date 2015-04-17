@@ -1,12 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        Charity Name : #{displayBean.singleCharity.charityName}<br/>
+        Charity Id :#{displayBean.singleCharity.charityId}<br/>
+        Establishment Date :#{displayBean.singleCharity.establishmentDate}<br/>
+        Address :#{displayBean.singleCharity.address}<br/>
+        #{displayBean.singleCharity.information}<br/> 
+        <h:dataTable value="#{displayBean.singleCharity.causes}" var="cause">
+            <h:column>
+                <f:facet name="header">Link</f:facet>
+                <h:form>
+                    <h:commandLink action="#{displayBean.findCause(cause.id)}" value="Link"></h:commandLink>
+                </h:form>                
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                     #{cause.name}         
+            </h:column>
+            <h:column>
+                <f:facet name="header">Info</f:facet>
+                    #{cause.info}          
+            </h:column>            
+        </h:dataTable>
+        <br/>
+        <h:form>
+            <h:commandButton action="#{displayBean.goHome()}"></h:commandButton>
+        </h:form>
     </h:body>
 </html>
 

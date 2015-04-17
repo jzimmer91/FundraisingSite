@@ -10,8 +10,9 @@
                
         <h:form id="register-charity">
             Email*: <h:inputText id="email" label="email" maxlength="45" required="true" requiredMessage="Required" 
-                         title="email" value="#{registerCharityBean.email}">
-            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex></h:inputText> <br/>
+                         title="email" value="#{registerCharityBean.email}" binding="#{registerCharityBean.emailInput}">                
+            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex></h:inputText> 
+            <h:message for="email" /><br/>
             Password*: <h:inputSecret id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
                          title="password" value="#{registerCharityBean.password}"></h:inputSecret> <br/>
             Charity Name*: <h:inputText id="charityname" label="Charity Name" maxlength="15" required="true" requiredMessage="Required" 
@@ -22,8 +23,7 @@
                          title="date" value="#{registerCharityBean.date}">
                 <f:converter converterId="multiDateConverter"/>
                     <f:attribute name="pattern1" value="dd/MM/yyyy" />
-            </h:inputText> <br/> 
-                         
+            </h:inputText> <br/>                          
                          
             Address*: <h:inputTextarea id="address" label="Address" required="true" requiredMessage="Required"
                                        title="Address" value="#{registerCharityBean.address}"></h:inputTextarea><br/>

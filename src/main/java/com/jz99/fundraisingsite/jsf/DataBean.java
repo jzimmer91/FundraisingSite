@@ -25,14 +25,18 @@ public class DataBean {
     List<CharityAccount> charities;
     
     
+    
     @EJB
     DataService service;
     
     @PostConstruct
     private void init(){
+        
         this.users = service.getUsers();
         this.charities = service.getCharities();
-    }   
+    }
+    
+    
     
     public List<UserAccount> getUsers() {
         return users;
@@ -57,6 +61,8 @@ public class DataBean {
     public void setService(DataService service) {
         this.service = service;
     }
+
+    
     
     
 }

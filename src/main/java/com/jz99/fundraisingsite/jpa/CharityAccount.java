@@ -19,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -46,14 +45,14 @@ public class CharityAccount extends Account implements Serializable{
    private String information;
    @OneToMany(mappedBy="charity")
    private List<Cause> causes;   
-   @Embedded
-   private VirtualAccount bank;
+   @OneToMany(mappedBy="charity")
+   private List<Donation> donations;
    
    public CharityAccount(){
        
    }
    
-   public CharityAccount(String charityName, String charityId, Date establishmentDate, String address, String information, VirtualAccount bank) {
+   public CharityAccount(String charityName, String charityId, Date establishmentDate, String address, String information) {
         
         this.charityName = charityName;
         this.charityId = charityId;
@@ -61,7 +60,8 @@ public class CharityAccount extends Account implements Serializable{
         this.address = address;
         this.information = information;
         this.causes = new ArrayList<>();
-        this.bank = bank;        
+        this.donations = new ArrayList<>();
+               
     }
   
        
@@ -114,13 +114,14 @@ public class CharityAccount extends Account implements Serializable{
         this.causes = causes;
     }
 
-    public VirtualAccount getBank() {
-        return bank;
+    public List<Donation> getDonations() {
+        return donations;
     }
 
-    public void setBank(VirtualAccount bank) {
-        this.bank = bank;
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
+
 
         @Override
     public int hashCode() {

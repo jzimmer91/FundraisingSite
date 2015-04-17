@@ -1,4 +1,5 @@
 com\jz99\fundraisingsite\ejb\DataService.class
+org\netbeans\rest\application\config\ApplicationConfig.class
 com\jz99\fundraisingsite\jsf\RegisterDonationBean.class
 com\jz99\fundraisingsite\jsf\RegisterCauseBean.class
 com\jz99\fundraisingsite\jpa\Activity.class
@@ -17,9 +18,9 @@ com\jz99\fundraisingsite\jsf\DisplayBean.class
 com\jz99\fundraisingsite\jpa\Account.class
 com\jz99\fundraisingsite\ejb\RegisterService.class
 com\jz99\fundraisingsite\jpa\UserAccount.class
-com\jz99\fundraisingsite\jpa\VirtualAccount.class
 com\jz99\fundraisingsite\jsf\RegisterActivityBean.class
 com\jz99\fundraisingsite\ejb\DonationService.class
+com\jz99\fundraisingsite\rest\INCR.class
 com\jz99\fundraisingsite\utils\Utils.class
 com\jz99\fundraisingsite\jsf\RegisterAdminBean.class
 com\jz99\fundraisingsite\ejb\StartUpBean.class

@@ -9,6 +9,9 @@ import com.jz99.fundraisingsite.ejb.RegisterService;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -20,7 +23,8 @@ import javax.inject.Named;
 public class RegisterAdminBean {
     
     @EJB
-   RegisterService service;
+    RegisterService service;
+    UIComponent usernameInput;
     String username;
     String password;
     
@@ -29,8 +33,15 @@ public class RegisterAdminBean {
     }
 
     public String submitAdmin(){
-       service.registerAdmin(username, password);
-       return "index";
+       if(service.registerAdmin(username, password)){
+         return "index";  
+       }
+       else{
+           FacesMessage message = new FacesMessage("username already registered");
+           FacesContext context = FacesContext.getCurrentInstance();
+           context.addMessage(usernameInput.getClientId(context), message);
+           return null;
+       }
     }
     
     public RegisterService getService() {

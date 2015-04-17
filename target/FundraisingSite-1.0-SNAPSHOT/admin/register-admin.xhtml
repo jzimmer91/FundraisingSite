@@ -8,7 +8,8 @@
     <h:body>
         <h:form id="register-admin">
             Username*: <h:inputText id="username" label="Username" maxlength="15" required="true" requiredMessage="Required" 
-                         title="username" value="#{registerAdminBean.username}"></h:inputText> <br/>
+                                    title="username" value="#{registerAdminBean.username}" binding="registerAdminBean.usernameInput"></h:inputText>
+            <h:message for="username" /><br/><br/>
             Password*: <h:inputText id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
                          title="password" value="#{registerAdminBean.password}"></h:inputText> <br/>
             <h:commandButton id="register" title ="Register" label ="Register" type="submit" value="Register" action="#{registerAdminBean.submitAdmin}"></h:commandButton>            

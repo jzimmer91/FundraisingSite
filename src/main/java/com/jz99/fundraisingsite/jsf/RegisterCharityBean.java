@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -22,7 +25,7 @@ public class RegisterCharityBean {
     
    @EJB
    RegisterService service;
-    
+   UIComponent emailInput; 
    String email;
    String password;
    String charityName;
@@ -36,8 +39,16 @@ public class RegisterCharityBean {
    }
    
    public String submitCharity(){
-       service.registerCharity(email, password, charityName, charityId,date,address,information);
-       return "index";
+       if (service.registerCharity(email, password, charityName, charityId,date,address,information)){
+            return "index";
+       }
+       else
+       {
+           FacesMessage message = new FacesMessage("Email already registered");
+           FacesContext context = FacesContext.getCurrentInstance();
+           context.addMessage(emailInput.getClientId(context), message);
+           return null;
+       }
    }
 
     public RegisterService getService() {
@@ -103,6 +114,15 @@ public class RegisterCharityBean {
     public void setInformation(String information) {
         this.information = information;
     }
+
+    public UIComponent getEmailInput() {
+        return emailInput;
+    }
+
+    public void setEmailInput(UIComponent emailInput) {
+        this.emailInput = emailInput;
+    }
+    
 
     @Override
     public int hashCode() {

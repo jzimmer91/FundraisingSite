@@ -13,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import com.jz99.fundraisingsite.utils.Utils;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -26,9 +28,9 @@ public class RegisterService {
   
   
   //check for duplicate emails before persisting
-  public void registerUser(String email,String password, String firstName, String lastName, String address, String aboutYou) {
+  public boolean registerUser(String email,String password, String firstName, String lastName, String address, String aboutYou) {
         if (checkDuplicate(email)){
-          
+          return false;
         }
         else{       
             String pass = Utils.PasswordEncrypt(password);
@@ -39,29 +41,30 @@ public class RegisterService {
             em.persist(account);
             em.persist(systemuser);
             em.persist(group);
+            return true;
         }
     }
   //check for duplicate emails before persisting
-  public void registerCharity(String email, String password, String charityName, String charityId, Date date,String address, String information){
-      if (checkDuplicate(email)){
-          
+  public boolean registerCharity(String email, String password, String charityName, String charityId, Date date,String address, String information){
+      if (checkDuplicate(email)){            
+            return false;
       }
       else{
+         //CHECK WITH INCR FOR CHARITYID
         String pass = Utils.PasswordEncrypt(password);
       
-        VirtualAccount bank = new VirtualAccount();
-        CharityAccount account = new CharityAccount(charityName,charityId,date,address,information,bank);
+        CharityAccount account = new CharityAccount(charityName,charityId,date,address,information);
         SystemUser systemuser = new SystemUser(email,pass,account);
         SystemUserGroup group = new SystemUserGroup(email,"charity");
-        em.persist(account);
-        em.persist(bank);
+        em.persist(account);        
         em.persist(systemuser);
         em.persist(group);
+        return true;
       }
   }
-  public void registerAdmin(String username, String password){
+  public boolean registerAdmin(String username, String password){
       if (checkDuplicate(username)){
-          
+          return false;
       }
       else{
       String pass = Utils.PasswordEncrypt(password);
@@ -71,7 +74,8 @@ public class RegisterService {
         SystemUserGroup group = new SystemUserGroup(username,"admin");
         em.persist(account);
         em.persist(systemuser);
-        em.persist(group);  
+        em.persist(group);
+        return true;
       }
   }
   

@@ -6,6 +6,7 @@
 package com.jz99.fundraisingsite.ejb;
 
 import com.jz99.fundraisingsite.jpa.*;
+import com.jz99.fundraisingsite.utils.Utils;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -78,4 +79,6 @@ public class DataService {
             return cause.get(0);
         }
     }
+    
+    
 }

@@ -114,7 +114,7 @@ public class UserAccount extends Account implements Serializable {
         hash = 61 * hash + Objects.hashCode(this.lastName);
         hash = 61 * hash + Objects.hashCode(this.address);
         hash = 61 * hash + Objects.hashCode(this.aboutYou);
-        hash = 61 * hash + this.balance;
+        
         return hash;
     }
 
@@ -140,9 +140,7 @@ public class UserAccount extends Account implements Serializable {
         if (!Objects.equals(this.aboutYou, other.aboutYou)) {
             return false;
         }
-        if (this.balance != other.balance) {
-            return false;
-        }
+        
         return true;
     }
 

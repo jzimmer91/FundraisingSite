@@ -9,6 +9,9 @@ import com.jz99.fundraisingsite.ejb.DonationService;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -21,22 +24,57 @@ public class RegisterDonationBean {
     
     @EJB
     DonationService service;
+    UIComponent donationInput;
     String cause;
     String activity;
-    String amount;
+    int amount;
     
     public RegisterDonationBean(){
         
     }
     
     public void submitCauseDonation(){
-        service.registerCauseDonation(cause,amount);
+        if(amount > 500){
+           FacesMessage message = new FacesMessage("Donations can not be over £500");
+           FacesContext context = FacesContext.getCurrentInstance();
+           context.addMessage(donationInput.getClientId(context), message);
+        }
+        else{    
+            if(service.registerCauseDonation(cause,amount)){
+                FacesMessage message = new FacesMessage("Donation successful");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(donationInput.getClientId(context), message);
+            }
+            else{
+                FacesMessage message = new FacesMessage("Insufficient funds");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(donationInput.getClientId(context), message);
+            }
+        }
     }
     
-    public void submitActivityDonation(){
-        service.registerActivityDonation(cause,activity,amount);
+    public void submitActivityDonation(){        
+        if( amount > 500){
+           FacesMessage message = new FacesMessage("Donations can not be over £500");
+           FacesContext context = FacesContext.getCurrentInstance();
+           context.addMessage(donationInput.getClientId(context), message);
+        }
+        else{    
+            if(service.registerActivityDonation(cause,activity,amount)){
+                FacesMessage message = new FacesMessage("Donation successful");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(donationInput.getClientId(context), message);
+            }
+            else{
+                FacesMessage message = new FacesMessage("Insufficient funds");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(donationInput.getClientId(context), message);
+            }
+        }        
     }
 
+    
+    
     public DonationService getService() {
         return service;
     }
@@ -61,13 +99,22 @@ public class RegisterDonationBean {
         this.activity = activity;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public UIComponent getDonationInput() {
+        return donationInput;
+    }
+
+    public void setDonationInput(UIComponent donationInput) {
+        this.donationInput = donationInput;
+    }
+    
 
     @Override
     public int hashCode() {

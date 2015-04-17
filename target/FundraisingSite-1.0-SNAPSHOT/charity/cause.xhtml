@@ -6,7 +6,16 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        Name: #{displayBean.singleCause.name}<br/>
+        Info:<br/>
+        #{displayBean.singleCause.info}<br/>
+        <h:form>
+            Donation Amount:<h:inputText id ="donation" value="#{registerDonationBean.amount}" required="true" requiredMessage="Input amount"
+                                         binding="#{registerDonationBean.donationInput}"></h:inputText>
+            <h:message for="donation" /><br/>
+            <h:inputHidden value="#{displayBean.singleCause.name}"></h:inputHidden>
+            <h:commandButton action="#{registerDonationBean.submitCauseDonation}" value="Donate!"></h:commandButton>
+        </h:form>
     </h:body>
 </html>
 

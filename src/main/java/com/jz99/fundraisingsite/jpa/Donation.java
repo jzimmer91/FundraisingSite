@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,28 +33,28 @@ public class Donation implements Serializable {
     @ManyToOne
     private Activity activity;
     @NotNull
-    private String amount;
+    private int amount;
     @NotNull    @ManyToOne
     private UserAccount donor;
     @NotNull @ManyToOne
-    private VirtualAccount bank;
+    private CharityAccount charity;
     
     public Donation(){
         
     }
     //Activity donation
-    public Donation(Cause cause, Activity activity, String amount, UserAccount donor, VirtualAccount bank){
+    public Donation(Cause cause, Activity activity, int amount, UserAccount donor, CharityAccount charity){
         this.cause = cause;
         this.activity = activity;
         this.amount = amount;
         this.donor = donor;
-        this.bank = bank;
+        this.charity = charity;
     }
     
-    public Donation(Cause cause, String amount, UserAccount user, VirtualAccount bank){
+    public Donation(Cause cause, int amount, UserAccount user, CharityAccount charity){
         this.cause = cause;
         this.amount = amount;
-        this.bank = bank;
+        this.charity = charity;
     }
   
 
@@ -83,11 +82,11 @@ public class Donation implements Serializable {
         this.activity = activity;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -99,13 +98,15 @@ public class Donation implements Serializable {
         this.donor = donor;
     }
 
-    public VirtualAccount getBank() {
-        return bank;
+    public CharityAccount getCharity() {
+        return charity;
     }
 
-    public void setBank(VirtualAccount bank) {
-        this.bank = bank;
+    public void setCharity(CharityAccount charity) {
+        this.charity = charity;
     }
+
+    
     
     @Override
     public int hashCode() {

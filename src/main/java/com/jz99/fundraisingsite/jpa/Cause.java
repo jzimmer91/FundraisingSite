@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
         @NamedQuery(name="listCauses", query="SELECT c FROM Cause c ORDER BY c.name"),
         @NamedQuery(name="getCauseByName", query="SELECT DISTINCT c FROM Cause c WHERE c.name = LOWER(:name)"),
         @NamedQuery(name="getCause", query="SELECT c FROM Cause c WHERE c.id = (:id)"),
-        @NamedQuery(name="findBank", query="SELECT c.charity.bank FROM Cause c WHERE c.name = LOWER(:name)")
+        @NamedQuery(name="findCharity", query="SELECT c.charity FROM Cause c WHERE c.name = LOWER(:name)")
 })
 
 @XmlRootElement

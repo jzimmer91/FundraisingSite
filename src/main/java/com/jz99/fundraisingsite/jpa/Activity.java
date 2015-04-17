@@ -6,6 +6,8 @@
 package com.jz99.fundraisingsite.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name="getActivity", query="SELECT a FROM Activity a WHERE a.id = (:id)")
 })
 
-@XmlRootElement
+
 public class Activity implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +44,8 @@ public class Activity implements Serializable {
     private Cause cause;
     @ManyToOne
     private UserAccount fundraiser;
+    @OneToMany(mappedBy="activity")
+    private List<Donation> donations;
     
     
     public Activity(){
@@ -52,6 +57,7 @@ public class Activity implements Serializable {
         this.info = info;
         this.cause = cause;
         this.fundraiser = fundraiser;
+        this.donations = new ArrayList<>();
         
     }
 
@@ -94,6 +100,14 @@ public class Activity implements Serializable {
 
     public void setFundraiser(UserAccount fundraiser) {
         this.fundraiser = fundraiser;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
     
 

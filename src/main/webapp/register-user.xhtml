@@ -9,8 +9,9 @@
     <h:body>        
         <h:form id="register-user">
             Email*: <h:inputText id="email" label="Email" maxlength="40" required="true" requiredMessage="Required" 
-                         title="email" value="#{registerUserBean.email}">  
-                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex></h:inputText> <br/>
+                         title="email" value="#{registerUserBean.email}" binding="registerUserBean.emailInput">  
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex></h:inputText>
+            <h:message for="email" /><br/>
             Password*: <h:inputSecret id="password" label="Password" maxlength="15" required="true" requiredMessage="Required" 
                          title="password" value="#{registerUserBean.password}"></h:inputSecret><br/>
             First Name*: <h:inputText id="firstname" label="First Name" maxlength="15" required="true" requiredMessage="Required" 
